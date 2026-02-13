@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat App Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="Styles/style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Chat Login</h2>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="input-group password-wrapper">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <span class="toggle-password" id="togglePassword">Show</span>
+        </div>
+
+        <button class="login-btn" id="loginBtn">Login</button>
+
+        <div id="message"></div>
+    </div>
+
+    <script src="Scripts/script.js"></script>
+</body>
+</html>
