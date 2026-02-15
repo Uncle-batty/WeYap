@@ -44,7 +44,10 @@ async function loadMessages() {
     const { data, error } = await supabaseClient
         .from("Chats")
         .select("*")
-        .or(`sent_User_Id.eq.${currentUser.id},to_User_Id.eq.${currentUser.id}`)
+        .or(
+            `and(sent_User_Id.eq.${currentUser.id},to_User_Id.eq.${RECEIVER_ID}),` +
+            `and(sent_User_Id.eq.${RECEIVER_ID},to_User_Id.eq.${currentUser.id})`
+        )
         .order("created_at", { ascending: true });
 
     if (error) {
@@ -53,9 +56,9 @@ async function loadMessages() {
     }
 
     messagesDiv.innerHTML = "";
-
     data.forEach(msg => renderMessage(msg));
 }
+
 
 
 
@@ -114,16 +117,20 @@ function setupRealtime() {
             (payload) => {
                 const newMessage = payload.new;
 
-                if (
-                    newMessage.sent_User_Id === currentUser.id ||
-                    newMessage.to_User_Id === currentUser.id
-                ) {
+                const isBetweenUsers =
+                    (newMessage.sent_User_Id === currentUser.id &&
+                     newMessage.to_User_Id === RECEIVER_ID) ||
+                    (newMessage.sent_User_Id === RECEIVER_ID &&
+                     newMessage.to_User_Id === currentUser.id);
+
+                if (isBetweenUsers) {
                     renderMessage(newMessage);
                 }
             }
         )
         .subscribe();
 }
+
 
 
 
