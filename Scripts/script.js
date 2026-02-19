@@ -1,5 +1,4 @@
 
-
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 const loginBtn = document.getElementById("loginBtn");

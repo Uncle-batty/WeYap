@@ -1,5 +1,4 @@
 
-
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // Get receiver ID from query string

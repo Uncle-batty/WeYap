@@ -1,0 +1,155 @@
+/* ===== Base ===== */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/* ===== Chat App Container (Glass Style) ===== */
+
+.chat-app {
+    width: 380px;
+    height: 85vh;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+/* ===== Header ===== */
+
+.chat-header {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+/* Logout button (same style as login button) */
+
+.chat-header button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #00c6ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chat-header button:hover {
+    background-color: #0072ff;
+}
+
+
+/* ===== User List ===== */
+
+.users-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+
+/* ===== Chat Item ===== */
+
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.user-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ===== Avatar ===== */
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    background: #00c6ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+
+/* ===== User Info ===== */
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.last-message {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 4px;
+}
+
+
+/* ===== Timestamp ===== */
+
+.timestamp {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ===== Error / Status Messages ===== */
+
+.error {
+    text-align: center;
+    margin-top: 15px;
+    color: #ff6b6b;
+}
+
+.success {
+    text-align: center;
+    margin-top: 15px;
+    color: #00ff99;
+}
