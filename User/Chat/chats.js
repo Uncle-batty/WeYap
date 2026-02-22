@@ -1,4 +1,7 @@
-const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+import { CONFIG } from "../../Scripts/config.js";
+
+const supabaseUrl = CONFIG.supabaseUrl;
+const supabaseKey = CONFIG.supabaseKey;
 
 const usersList = document.getElementById("usersList");
 const logoutBtn = document.getElementById("logoutBtn");

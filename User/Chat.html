@@ -6,24 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Emoji picker -->
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+
     <link rel="stylesheet" href="Chat/chat.css">
 </head>
+
 <body>
 
-    <div class="chat-container">
-        <div class="chat-header">
-            <h3 id="Chat-name">Simple Chat</h3>
-            <button id="logoutBtn">Logout</button>
-        </div>
+<div class="chat-container">
 
-        <div id="messages" class="messages"></div>
+    <!-- HEADER -->
+    <header class="chat-header">
 
-        <div class="chat-input">
-            <input type="text" id="messageInput" placeholder="Type a message...">
-            <button id="sendBtn">Send</button>
-        </div>
+        <button id="backBtn">←</button>
+
+        <h3 id="chatUserName">Loading...</h3>
+
+        <button id="logoutBtn">Logout</button>
+
+    </header>
+
+
+    <!-- MESSAGES -->
+    <div id="messages" class="messages"></div>
+
+
+    <!-- INPUT AREA -->
+    <div class="chat-input">
+
+        <button id="emojiBtn">😊</button>
+
+        <input
+            id="messageInput"
+            type="text"
+            placeholder="Type a message..."
+            autocomplete="off"
+        />
+
+        <button id="sendBtn">Send</button>
+        <button id="recordBtn">🎤</button>
     </div>
 
-    <script src="Chat/chat.js"></script>
+</div>
+
+<script src="Chat/chat.js"></script>
+
 </body>
 </html>
