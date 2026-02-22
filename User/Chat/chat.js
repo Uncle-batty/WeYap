@@ -299,7 +299,7 @@ async function uploadVoiceNote(audioBlob) {
 // ============================
 
 backBtn.addEventListener("click", () => {
-    window.location.href = "users.html";
+    window.location.href = "../Chats.html";
 });
 
 logoutBtn.addEventListener("click", async () => {
