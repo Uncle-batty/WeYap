@@ -24,6 +24,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 const backBtn = document.getElementById("backBtn");
 const chatUserName = document.getElementById("chatUserName");
 const emojiBtn = document.getElementById("emojiBtn");
+const callBtn = document.getElementById("callBtn"); //in development
 
 let currentUser = null;
 
@@ -294,6 +295,21 @@ async function uploadVoiceNote(audioBlob) {
             to_User_Id: RECEIVER_ID
         }]);
 }
+
+// ============================
+// Voice call functionality (basic implementation)
+// ============================
+
+const localStream = await navigator.mediaDevices.getUserMedia({
+  audio: true,
+  video: false
+});
+
+callBtn.addEventListener("click", () => {
+    alert("Voice call functionality is not implemented in this demo.");
+});
+
+
 // ============================
 // NAVIGATION
 // ============================
