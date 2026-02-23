@@ -15,6 +15,7 @@ if (!RECEIVER_ID) {
 }
 
 
+
 // ===== Elements =====
 
 const messagesDiv = document.getElementById("messages");
@@ -24,6 +25,8 @@ const logoutBtn = document.getElementById("logoutBtn");
 const backBtn = document.getElementById("backBtn");
 const chatUserName = document.getElementById("chatUserName");
 const emojiBtn = document.getElementById("emojiBtn");
+const typingIndicatorDiv = document.getElementById("typingIndicator");
+
 
 let currentUser = null;
 
@@ -42,13 +45,36 @@ async function init() {
     }
 
     currentUser = session.user;
-
     await loadReceiverName();
     await loadMessages();
     setupRealtime();
 }
 
-init();
+await init();
+
+// Create a channel for users to listen on
+const channel = supabaseClient.channel(setRoomId(currentUser.id, RECEIVER_ID));
+await channel.subscribe();
+
+// Listen for typing event
+let typingTimer;
+
+channel.on('broadcast', { event: 'typing' }, (payload) => {
+    console.log('Is typing:', payload.payload)
+
+    typingIndicatorDiv.innerText = RECEIVER_ID + ' is typing...' ;
+    
+    clearTimeout(typingTimer);
+
+    typingTimer = setTimeout(() => {
+        typingIndicatorDiv.innerText = '';
+    }, 3000);
+})
+
+// Normalize user room ID
+function setRoomId(userId, recieverId){
+    return [userId, recieverId].sort().join("-");
+}
 
 
 // ============================
@@ -157,7 +183,6 @@ async function sendMessage() {
 
 sendBtn.addEventListener("click", sendMessage);
 
-
 // ============================
 // ENTER KEY SEND
 // ============================
@@ -167,6 +192,14 @@ messageInput.addEventListener("keydown", (e) => {
         e.preventDefault();
         sendMessage();
     }
+    
+    // Broadcast to channel
+    // When user initiates a keydown event
+    console.log("Key down");
+    channel.send({
+        type: 'broadcast',
+        event: 'typing',
+        payload: { from: currentUser.id }})
 });
 
 
