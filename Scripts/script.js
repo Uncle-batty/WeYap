@@ -4,53 +4,39 @@ const supabaseUrl = CONFIG.supabaseUrl;
 const supabaseKey = CONFIG.supabaseKey;
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-const loginBtn = document.getElementById("loginBtn");
-const togglePassword = document.getElementById("togglePassword");
-const message = document.getElementById("message");
+async function handleSignIn(username, password) {
+    const {data, error} = await supabaseClient.auth.signInWithPassword({
+        email: username,
+        password: password,
+    });
 
-togglePassword.addEventListener("click", () => {
-    const passwordInput = document.getElementById("password");
-
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.textContent = "Hide";
-    } else {
-        passwordInput.type = "password";
-        togglePassword.textContent = "Show";
-    }
-});
-
-loginBtn.addEventListener("click", async () => {
-
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    message.innerHTML = "";
-
-    if (!username || !password) {
-        message.innerHTML = "<div class='error'>Please fill in all fields.</div>";
+    if (error) {
+        console.log("Error signing-in: ", error.message);
+        // show the error wrapper on failed sign in
+        document.querySelectorAll(".error-message").forEach(errElement => {
+            errElement.classList.remove("hidden");
+        });
         return;
     }
 
-    try {
+    console.log("User signed in:", data.user.id);
+    window.location.href = "../User/Chats.html";
 
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email: username,
-            password: password,
-        });
-
-        if (error) {
-            message.innerHTML = `<div class='error'>${error.message}</div>`;
-            return;
-        }
-
-        message.innerHTML = "<div class='success'>Login successful! Redirecting...</div>";
-
-        setTimeout(() => {
-            window.location.href = "../User/Chats.html";
-        }, 1500);
-
-    } catch (err) {
-        message.innerHTML = "<div class='error'>Something went wrong.</div>";
     }
-});
+
+// DOMContentLoaded event fires when 
+// the HTML document has been completely parsed
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#loginForm")
+
+    loginForm.addEventListener("submit", async (event) => {
+        // Prevent page refresh from trying to submit a form
+        event.preventDefault();
+        // Gather all inputs from form
+        const formData = new FormData(loginForm);
+        // Transforms kvps into a JS Object
+        const formObject = Object.fromEntries(formData);
+        
+        await handleSignIn(formObject.username, formObject.password);
+    })
+})

@@ -8,29 +8,100 @@
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <link rel="stylesheet" href="Styles/style.css">
+    <!-- Tailwind CDN -->
+    <link href="./src/output.css" rel="stylesheet">
+
+    
 </head>
 <body>
-
-    <div class="login-container">
-        <h2>Chat Login</h2>
-
-        <div class="input-group">
-            <label>Username</label>
-            <input type="text" id="username" placeholder="Enter your username">
+    <div class="bg-[#181818] md:w-full md:h-full md:justify-center md:align-middle md:items-center md:flex absolute">
+        <div >
+            <form class="block p-8 md:w-175 bg-[#1f1f1f] rounded text-white" id="loginForm">
+                <div class="text-center">
+                    <div class="flex flex-nowrap shrink justify-start flex-col">
+                        <div class="flex flex-col items-center">
+                            <h2 class="text-[24px] font-semibold mb-2 w-fit">Welcome back!</h2>
+                            <p class="text-[16px] font-normal">Yapping since 2026</p>
+                        </div>
+                    <div class="mt-8 text-start">
+                        <div class="mb-5">
+                            <div class="grid">
+                                <div class="mb-2">
+                                    <label>Email <span class="text-red-400">*</span></label>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div>
+                                        <input class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded" 
+                                        type="text" id="username" name="username" placeholder="Enter your username" required>
+                                    </div>
+                                    <div class="error-message hidden grid justify-start grid-cols-1 items-center ">
+                                        <div class="flex items-center gap-1">
+                                            <div class="w-4 h-4 shrink-0 align-middle">
+                                                <svg  
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    viewBox="0 0 640 640"
+                                                    class="w-4 h-4 shrink-0 block fill-red-400"
+                                                    >
+                                                    <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                                                    <path d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM320 384C302.3 384 288 398.3 288 416C288 433.7 302.3 448 320 448C337.7 448 352 433.7 352 416C352 398.3 337.7 384 320 384zM320 192C301.8 192 287.3 207.5 288.6 225.7L296 329.7C296.9 342.3 307.4 352 319.9 352C332.5 352 342.9 342.3 343.8 329.7L351.2 225.7C352.5 207.5 338.1 192 319.8 192z" viewbox="0 0 24 24"/>
+                                                </svg>
+                                            </div>
+                                            <div class="text-sm text-red-400">
+                                                Login or password is incorrect.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-5">
+                            <div class="grid">
+                                <div class="mb-2">
+                                    <label>Password <span class="text-red-400">*</span></label>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div>
+                                        <input class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded" 
+                                        type="password" id="password" name="password" placeholder="Enter your password" required>
+                                    </div>
+                                    <div class="error-message hidden grid justify-start grid-cols-1 items-center">
+                                        <div class="flex items-center gap-1">
+                                            <div class="w-4 h-4 shrink-0 align-middle">
+                                                <svg  
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    viewBox="0 0 640 640"
+                                                    class="w-4 h-4 shrink-0 block fill-red-400"
+                                                    >
+                                                    <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                                                    <path d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM320 384C302.3 384 288 398.3 288 416C288 433.7 302.3 448 320 448C337.7 448 352 433.7 352 416C352 398.3 337.7 384 320 384zM320 192C301.8 192 287.3 207.5 288.6 225.7L296 329.7C296.9 342.3 307.4 352 319.9 352C332.5 352 342.9 342.3 343.8 329.7L351.2 225.7C352.5 207.5 338.1 192 319.8 192z" viewbox="0 0 24 24"/>
+                                                </svg>
+                                            </div>
+                                            <div class="text-sm text-red-400">
+                                                Login or password is incorrect.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="mb-1">
+                                <button type="submit" value="submit" class="flex text-start relative w-full justify-center text-white bg-[#4B70F5] box-border border border-transparent rounded hover:bg-[#334a9f] focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm focus:outline-none" id="loginBtn">
+                                    <div class="py-1.75 px-3.75 ">
+                                        <div>
+                                            <span>Log In</span>
+                                        </div>
+                                        
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="message"></div>
+                        </div>
+                    </div>    
+            </div>    
+            </form>    
         </div>
-
-        <div class="input-group password-wrapper">
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Enter your password">
-            <span class="toggle-password" id="togglePassword">Show</span>
-        </div>
-
-        <button class="login-btn" id="loginBtn">Login</button>
-
-        <div id="message"></div>
     </div>
-
     <script type="module"  src="Scripts/script.js"></script>
 </body>
 </html>
